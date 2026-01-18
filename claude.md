@@ -74,6 +74,8 @@ Weighted Average = SUM(Purchase Price * Ordered Qty) / SUM(Ordered Qty)
 - Weighted average price per product
 - Total ordered quantity per product
 - Total FOB value per product
+- **Excel-format monthly price trend table**: Pivot table with products as rows, months as columns, weighted avg prices as values
+- **Excel-format monthly quantity table**: Same format showing quantities ordered
 
 ---
 
@@ -88,14 +90,24 @@ Weighted Average = SUM(Purchase Price * Ordered Qty) / SUM(Ordered Qty)
 | Dollar Deviation | Item Price - Weighted Average |
 | Percentage Deviation | (Item Price - Weighted Average) / Weighted Average * 100 |
 
-**Output Table**:
-- Product name
-- Size
-- PO Date
-- Purchase Price
-- Weighted Average (for that product in selected range)
-- Dollar Deviation (+/- $X.XX)
-- Percentage Deviation (+/- X.XX%)
+**Output Tables**:
+
+1. **Monthly Deviation Table (Dollars)** - Excel-format pivot:
+   - Rows: Products (Material ID + Short Name)
+   - Columns: Months within selected date range
+   - Values: `Monthly Weighted Avg - Overall Weighted Avg` (positive = above avg, negative = below)
+   - Last column: Overall weighted avg for reference
+
+2. **Monthly Deviation Table (Percentage)** - Same format with percentage deviation
+
+3. **Monthly Price Reference Table** - Shows actual monthly weighted avg prices
+
+4. **Individual PO Line Item Table**:
+   - Product name, PO Date, Purchase Price
+   - Weighted Average (for that product in selected range)
+   - Dollar Deviation (+/- $X.XX)
+   - Percentage Deviation (+/- X.XX%)
+   - Threshold filter: show items above/below a dollar amount
 
 ---
 
@@ -180,9 +192,9 @@ jupyter notebook po_analysis.ipynb
 
 ### Notebook Sections
 1. **Setup & Data Loading** - Data cleaning, PO-level aggregation
-2. **Monthly Price Trend** - Interactive Plotly line chart with product selector
-3. **Weighted Average Calculator** - Date range + product filter
-4. **Deviation Analysis** - Line item deviations with threshold filtering
+2. **Monthly Price Trend** - Interactive Plotly line chart with product selector, data tables
+3. **Weighted Average Calculator** - Date range + product filter, Excel-format monthly trend tables
+4. **Deviation Analysis** - Monthly deviation tables (dollars & %), individual PO deviations with threshold filtering
 5. **Deviation Banding** - Histogram and pie chart by **Total Quantity** (not count)
 6. **Benchmark Comparison** - Compare two date ranges with full period summaries
 

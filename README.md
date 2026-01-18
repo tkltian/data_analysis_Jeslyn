@@ -34,12 +34,19 @@ jupyter notebook po_analysis.ipynb
 - Select date range using date pickers
 - Filter by specific products or view all
 - Displays: weighted avg price, total quantity, total FOB value
+- **Excel-format monthly price trend table**: pivot table showing weighted avg price per product per month
+- **Excel-format monthly quantity table**: pivot table showing quantity ordered per product per month
+- All tables constrained to the user-selected date range
 
 ### 3. Deviation Analysis
 - Shows how each PO deviates from the weighted average
 - Dollar deviation: `Item Price - Weighted Average`
 - Percentage deviation: `(Deviation / Average) * 100%`
 - Threshold filters: show items above/below a dollar amount
+- **Monthly deviation table (dollars)**: Excel-format pivot showing each month's price deviation from overall weighted avg
+- **Monthly deviation table (percentage)**: same as above but in percentage format
+- **Monthly price reference table**: shows actual monthly weighted avg prices for context
+- All analysis constrained to user-selected date range
 
 ### 4. Deviation Banding
 - Categorizes purchases into $1 bands (e.g., "$1 to $2 above average")
