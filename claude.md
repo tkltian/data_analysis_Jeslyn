@@ -163,6 +163,72 @@ Weighted Average = SUM(Purchase Price * Ordered Qty) / SUM(Ordered Qty)
 
 ---
 
+## Implementation Details
+
+### Files
+| File | Description |
+|------|-------------|
+| `po_analysis.ipynb` | Main Jupyter notebook with interactive analysis |
+| `requirements.txt` | Python dependencies |
+| `PO Data.csv` | Source data file |
+
+### How to Run
+```bash
+pip install -r requirements.txt
+jupyter notebook po_analysis.ipynb
+```
+
+### Notebook Sections
+1. **Setup & Data Loading** - Data cleaning, PO-level aggregation
+2. **Monthly Price Trend** - Interactive Plotly line chart with product selector
+3. **Weighted Average Calculator** - Date range + product filter
+4. **Deviation Analysis** - Line item deviations with threshold filtering
+5. **Deviation Banding** - Histogram and pie chart by **Total Quantity** (not count)
+6. **Benchmark Comparison** - Compare two date ranges with full period summaries
+
+### Key Design Decisions
+
+#### 1. PO-Level Aggregation
+Multiple rows with the same `PO#` + `Material` represent different **sizes** of the same order. Since sizes have the same unit price, we aggregate by summing quantities:
+```python
+df = df.groupby(['PO#', 'Material', 'Short Name', 'PO_Date', 'Purchase_Price']).agg({
+    'Ordered_Qty': 'sum'
+}).reset_index()
+```
+This reduces ~3,000 rows to ~300 rows, giving one row per PO + Material combination.
+
+#### 2. Deviation Banding Uses Total Quantity
+Section 5 shows **how much you bought** at each price deviation level, not just count of POs. A single PO for 10,000 units at a bad price is more significant than 10 POs for 100 units each.
+
+#### 3. Product Grouping
+Products are grouped by `Material` ID only, aggregating all sizes and colors together.
+
+---
+
+## Known Issues & Solutions
+
+### Dollar Sign Parsing in Purchase Price Column
+
+**Problem**: The `Purchase Price` column contains values formatted as ` $41.70 ` (with leading/trailing spaces and dollar sign).
+
+**What DOESN'T work**:
+```python
+# This fails silently or throws errors
+df['Price'] = df[' Purchase Price '].str.replace('$', '', regex=False).str.strip().astype(float)
+```
+
+**Solution** - Use regex=True with escaped dollar sign:
+```python
+df['Purchase_Price'] = pd.to_numeric(
+    df[' Purchase Price '].astype(str).str.replace('\\$', '', regex=True).str.strip(),
+    errors='coerce'
+)
+```
+
+**Why**: The `$` character has special meaning in regex. When using `regex=False`, pandas string replacement doesn't handle the `$` character consistently across all pandas versions. Using `regex=True` with `\\$` (escaped) works reliably.
+
+---
+
 ## Future Enhancements
 
 - [ ] Export analysis results to Excel/CSV
