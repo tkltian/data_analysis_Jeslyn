@@ -58,6 +58,7 @@ See how prices have changed over time:
 - **Filter by category** (Material Category, Line, Type, Class, Construction)
 - Select/deselect specific products to compare
 - Legend shows which color belongs to which product
+- **Interactive toolbar**: Zoom, pan, reset view, save as image
 
 ### Section 3: Weighted Average Calculator
 
@@ -94,6 +95,7 @@ Visual breakdown of your purchases:
 - Grouped into $1 bands (e.g., "$1 to $2 below average")
 - **Filter by category** to analyze specific product types
 - **Show All Rows** toggle for the summary table
+- **Interactive toolbar**: Zoom, pan, reset view, save as image
 
 **Color coding:**
 - **Green bars = Savings** (below average)

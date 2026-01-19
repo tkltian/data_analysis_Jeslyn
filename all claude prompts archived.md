@@ -151,6 +151,13 @@ Just use matplotlib everywhere. Remember to update the requirements.txt, and upd
 
 ---
 
+### Prompt 21: Add Interactive Toolbar to Charts
+```
+Add plotting tools, such as zoom buttons, to the matplotlib plots
+```
+
+---
+
 ## Summary of Changes Made
 
 ### Features Implemented
@@ -163,6 +170,7 @@ Just use matplotlib everywhere. Remember to update the requirements.txt, and upd
 7. **Section 4**: Added green/red color coding for deviations
 8. **Sections 3, 4, 5, 6**: Added "Show All Rows (scrollable)" toggle
 9. **All Charts**: Replaced Plotly with matplotlib for reliable rendering
+10. **All Charts**: Added interactive toolbar (zoom, pan, reset, save) via ipympl
 
 ### Bug Fixes
 1. Gain/Loss formula: Changed from `(Comp - Base) × Qty` to `(Base - Comp) × Qty`
@@ -177,4 +185,4 @@ Just use matplotlib everywhere. Remember to update the requirements.txt, and upd
 
 ### Other
 1. Added `*.csv` and `exports/` to `.gitignore`
-2. Updated `requirements.txt` - replaced `plotly` with `numpy`
+2. Updated `requirements.txt` - added `ipympl` for interactive matplotlib

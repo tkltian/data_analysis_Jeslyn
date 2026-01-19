@@ -303,11 +303,12 @@ Sections 3, 4, 5, 6 include a "Show All Rows (scrollable)" checkbox. When enable
 - Tables are wrapped in a scrollable container (max-height: 400-500px)
 - Users can scroll through all data without exporting to CSV
 
-#### 10. Charting with matplotlib
-All charts use matplotlib instead of Plotly for reliable rendering:
+#### 10. Charting with matplotlib (Interactive)
+All charts use matplotlib with interactive toolbar (`%matplotlib widget` / `ipympl`):
 - Section 2: Line chart for monthly price trends
 - Section 5: Bar chart (histogram) and pie chart for deviation banding
-- Benefits: No rendering issues, no need for "Autoscale" button clicks
+- **Interactive toolbar buttons**: Pan, Zoom, Reset view, Save image
+- Benefits: No rendering issues, zoom/pan capabilities, easy image export
 
 ---
 
