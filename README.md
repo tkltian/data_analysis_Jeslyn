@@ -7,7 +7,9 @@ A Jupyter notebook tool for analyzing Purchase Order pricing data. No programmin
 - Calculate weighted average prices
 - See how individual purchases compare to the average
 - Compare prices between two time periods
+- **Filter by product categories** (Category, Line, Type, Class, Construction)
 - Export all tables to CSV files
+- **Color-coded results** (Green = savings, Red = paid more)
 
 ---
 
@@ -60,6 +62,7 @@ See how prices have changed over time:
 
 Calculate the true average price you paid:
 - Select a date range (start date to end date)
+- **Filter by category** (Material Category, Line, Type, Class, Construction)
 - Choose specific products or view all
 - See weighted average price (accounts for quantity bought)
 - View monthly breakdowns in table format
@@ -72,12 +75,13 @@ Calculate the true average price you paid:
 See how each purchase compares to the average:
 - **Dollar deviation**: How many dollars above/below average?
 - **Percentage deviation**: What percentage above/below average?
+- **Filter by category** to focus on specific product types
 - Filter to see only purchases above a certain threshold
 - **Export to CSV**
 
 **Color coding:**
-- Green = Below average (you paid less than usual - good!)
-- Red = Above average (you paid more than usual)
+- **Green = Below average** (you paid less than usual - savings!)
+- **Red = Above average** (you paid more than usual - loss)
 
 ### Section 5: Deviation Banding Charts
 
@@ -85,16 +89,18 @@ Visual breakdown of your purchases:
 - Histogram showing how much you bought at each price level
 - Pie chart showing distribution
 - Grouped into $1 bands (e.g., "$1 to $2 below average")
+- **Filter by category** to analyze specific product types
 
 **Color coding:**
-- Green bars = Savings (below average)
-- Red bars = Paid more (above average)
+- **Green bars = Savings** (below average)
+- **Red bars = Paid more** (above average)
 
 ### Section 6: Benchmark Comparison
 
 Compare prices between two time periods:
 - Set a "Baseline" period (your reference)
 - Set a "Comparison" period (what you're comparing)
+- **Filter by category** to compare specific product types
 - See price changes for each product
 - Calculate total gain or loss
 
@@ -105,9 +111,31 @@ Compare prices between two time periods:
 
 ---
 
+## Filtering by Category
+
+All analysis sections (3, 4, 5, 6) let you filter products by category:
+
+| Filter | What It Does |
+|--------|--------------|
+| **Category** | Filter by Material Category Description |
+| **Line** | Filter by Material Line Description |
+| **Type** | Filter by Material Product Type Description |
+| **Class** | Filter by Material Class Description |
+| **Construction** | Filter by Construction Type Description |
+
+**How to use:**
+1. Select a value from any dropdown (or leave as "All")
+2. The product list updates automatically to show matching products
+3. A counter shows how many products match your filters
+4. You can combine multiple filters (they work together)
+
+---
+
 ## Using Your Own Data
 
 Your CSV file needs these columns (exact names matter!):
+
+### Required Columns
 
 | Column | What It Contains | Example |
 |--------|------------------|---------|
@@ -117,6 +145,16 @@ Your CSV file needs these columns (exact names matter!):
 | `PO Date` | Date (M/DD/YY format) | 1/29/25 |
 | `Ordered Q'ty` | How many you ordered | 500 |
 | ` Purchase Price ` | Price per unit ($ OK) | $41.70 |
+
+### Optional Columns (for Category Filtering)
+
+| Column | What It Contains |
+|--------|------------------|
+| `Material Category Description` | Product category |
+| `Material Line Description` | Product line |
+| `Material Product Type Description` | Product type |
+| `Material Class Description` | Product class |
+| `Construction Type Description` | Construction type |
 
 **Important:** The file must be named exactly `PO Data.csv`
 
@@ -156,6 +194,11 @@ Gain/Loss = (Baseline Price - Comparison Price) × Comparison Quantity
 ```
 - Positive = You saved money (paid less than baseline)
 - Negative = You lost money (paid more than baseline)
+
+### Color Coding
+Throughout the tool:
+- **Green = Good** (savings, below average, positive gain)
+- **Red = Bad** (loss, above average, negative gain)
 
 ---
 

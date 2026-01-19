@@ -25,6 +25,17 @@ See **[How to run on Windows.md](How%20to%20run%20on%20Windows.md)** for detaile
 | `Purchase Price` | Unit price (formatted as `$XX.XX`) |
 | `Vendor Name` | Supplier name |
 
+### Category Columns (for Filtering)
+These columns enable filtering products by category in all analysis sections:
+
+| Column | Description |
+|--------|-------------|
+| `Material Category Description` | Top-level product category |
+| `Material Line Description` | Product line within category |
+| `Material Product Type Description` | Product type |
+| `Material Class Description` | Product class |
+| `Construction Type Description` | Construction/manufacturing type |
+
 ### Important Date Fields
 The data contains MULTIPLE date fields. **Always use `PO Date`** as the primary anchor for analysis:
 
@@ -69,7 +80,8 @@ The data contains MULTIPLE date fields. **Always use `PO Date`** as the primary 
 **Inputs**:
 - Start date (PO Date)
 - End date (PO Date)
-- Optional: Filter by product(s)
+- Optional: Filter by category (Category, Line, Type, Class, Construction)
+- Optional: Filter by specific product(s)
 
 **Calculation**:
 ```
@@ -96,6 +108,10 @@ Weighted Average = SUM(Purchase Price * Ordered Qty) / SUM(Ordered Qty)
 | Dollar Deviation | Item Price - Weighted Average |
 | Percentage Deviation | (Item Price - Weighted Average) / Weighted Average * 100 |
 
+**Color Coding**:
+- **GREEN** = Below average (savings - you paid less!)
+- **RED** = Above average (paid more than average)
+
 **Output Tables**:
 
 1. **Monthly Deviation Table (Dollars)** - Excel-format pivot:
@@ -103,6 +119,7 @@ Weighted Average = SUM(Purchase Price * Ordered Qty) / SUM(Ordered Qty)
    - Columns: Months within selected date range
    - Values: `Monthly Weighted Avg - Overall Weighted Avg` (positive = above avg, negative = below)
    - Last column: Overall weighted avg for reference
+   - Color coded: Green = below avg (savings), Red = above avg (paid more)
 
 2. **Monthly Deviation Table (Percentage)** - Same format with percentage deviation
 
@@ -111,8 +128,8 @@ Weighted Average = SUM(Purchase Price * Ordered Qty) / SUM(Ordered Qty)
 4. **Individual PO Line Item Table**:
    - Product name, PO Date, Purchase Price
    - Weighted Average (for that product in selected range)
-   - Dollar Deviation (+/- $X.XX)
-   - Percentage Deviation (+/- X.XX%)
+   - Dollar Deviation (+/- $X.XX) - color coded
+   - Percentage Deviation (+/- X.XX%) - color coded
    - Threshold filter: show items above/below a dollar amount
 
 ---
@@ -181,6 +198,24 @@ Gain/Loss = (Baseline Price - Comparison Price) × Comparison Qty
 
 ---
 
+## Category-Based Filtering
+
+All analysis sections (3, 4, 5, 6) support filtering by product categories using dropdown menus:
+
+1. **Material Category** - Filter by `Material Category Description`
+2. **Material Line** - Filter by `Material Line Description`
+3. **Material Type** - Filter by `Material Product Type Description`
+4. **Material Class** - Filter by `Material Class Description`
+5. **Construction Type** - Filter by `Construction Type Description`
+
+**How it works**:
+- Select "All" to include all products, or select a specific value to filter
+- Multiple category filters can be combined (AND logic)
+- The product list automatically updates to show only matching products
+- A counter shows how many products match the current filters
+
+---
+
 ## Data Processing Notes
 
 ### Cleaning Requirements
@@ -220,12 +255,12 @@ jupyter notebook po_analysis.ipynb
 ```
 
 ### Notebook Sections
-1. **Setup & Data Loading** - Data cleaning, PO-level aggregation
+1. **Setup & Data Loading** - Data cleaning, PO-level aggregation, category options
 2. **Monthly Price Trend** - Interactive Plotly line chart (900px tall), legend below chart
-3. **Weighted Average Calculator** - Date range + product filter, Excel-format monthly trend tables
-4. **Deviation Analysis** - Monthly deviation tables (dollars & %), individual PO deviations with threshold filtering
+3. **Weighted Average Calculator** - Date range + category filters + product filter, Excel-format monthly trend tables
+4. **Deviation Analysis** - Monthly deviation tables (dollars & %), individual PO deviations with threshold filtering, color coded
 5. **Deviation Banding** - Histogram and pie chart by **Total Quantity** (Green=savings, Red=paid more)
-6. **Benchmark Comparison** - Compare two date ranges with Gain/Loss calculations
+6. **Benchmark Comparison** - Compare two date ranges with Gain/Loss calculations, color coded
 
 ### Key Design Decisions
 
@@ -258,6 +293,9 @@ All currency values are displayed with exactly 2 decimal places (e.g., $41.70, n
 Throughout the notebook:
 - **Green = Good** (savings, below average, positive gain)
 - **Red = Bad** (loss, above average, negative gain)
+
+#### 8. Category-Based Filtering
+All analysis sections support filtering by 5 category dimensions. Filters use AND logic (all selected filters must match). The product selector dynamically updates based on category selections.
 
 ---
 
