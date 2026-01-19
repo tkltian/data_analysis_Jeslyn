@@ -248,6 +248,27 @@ Products are grouped by `Material` ID only, aggregating all sizes and colors tog
 - **Positive Gain/Loss = SAVINGS** (you paid less than baseline)
 - **Negative Gain/Loss = LOSS** (you paid more than baseline)
 
+#### 5. Per-Product Benchmark Comparison
+Section 6 compares products individually using an **inner join** - only products that appear in BOTH the baseline and comparison periods are shown. This prevents misleading comparisons when product mix changes between periods.
+
+#### 6. Number Formatting
+All currency values are displayed with exactly 2 decimal places (e.g., $41.70, not $41.7 or $41.698).
+
+#### 7. Color Coding Convention
+Throughout the notebook:
+- **Green = Good** (savings, below average, positive gain)
+- **Red = Bad** (loss, above average, negative gain)
+
+---
+
+## Export Functionality
+
+All tables can be exported to CSV files:
+- Click the green **"Export to CSV"** button below any table
+- Files are saved to the `exports/` folder with timestamps
+- Filenames include descriptive prefixes (e.g., `summary_20250118_143052.csv`)
+- HTML formatting is stripped from exported data for clean spreadsheet import
+
 ---
 
 ## Known Issues & Solutions
@@ -276,7 +297,6 @@ df['Purchase_Price'] = pd.to_numeric(
 
 ## Future Enhancements
 
-- [ ] Export analysis results to Excel/CSV
 - [ ] Add vendor-level analysis
 - [ ] Compare prices across vendors for same product
 - [ ] Landed cost analysis (including freight, duty, commission)
