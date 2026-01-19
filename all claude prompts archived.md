@@ -201,6 +201,27 @@ Section 6: add the same histogram / pie chart, just like section 5, but instead 
 
 ---
 
+### Prompt 28: Use Black Text for Pie Chart Percentages
+```
+For all pie charts, when the pies are light green, or light red, the white characters don't stand out because of lack of contrast. We should just Use deep color characters instead. I think let's just use black characters for the percentages markings on the pie charts
+```
+
+---
+
+### Prompt 29: Update All Documentation
+```
+Update all documentations. Also, for "how to run on Windows" documentation, add detailed steps / guide, assuming the user don't know how to use Jupyter notebook or Google Colab
+```
+
+---
+
+### Prompt 30: Collapse Code Sections and Show Data File Path
+```
+ALso, for the Jupyter notebook, the code sections are getting pretty lengthy. By default, collapse all code sections. Also, for loading data, add a box for the user to see the data file that is being loaded, instead of just having part of the code that says "df_raw = pd.read_csv('PO Data.csv'... "
+```
+
+---
+
 ## Summary of Changes Made
 
 ### Features Implemented

@@ -3,13 +3,15 @@
 A Jupyter notebook tool for analyzing Purchase Order pricing data. No programming experience required!
 
 **Features:**
-- View price trends over time
+- View price trends over time with interactive charts
 - Calculate weighted average prices
 - See how individual purchases compare to the average
-- Compare prices between two time periods
+- Compare prices between two time periods (benchmark comparison)
 - **Filter by product categories** (Category, Line, Type, Class, Construction)
+- **Interactive charts** with zoom, pan, and save capabilities
 - Export all tables to CSV files
 - **Color-coded results** (Green = savings, Red = paid more)
+- **Show All Rows** toggle for viewing complete data in scrollable tables
 
 ---
 
@@ -94,30 +96,36 @@ See how each purchase compares to the average:
 
 Visual breakdown of your purchases:
 - Bar chart (histogram) showing how much you bought at each price level
-- Pie chart showing distribution
-- Grouped into $1 bands (e.g., "$1 to $2 below average")
+- Pie chart showing distribution (with legend below for clarity)
+- Grouped into $1 bands (e.g., "$0-1 below", "$1-2 above")
 - **Filter by category** to analyze specific product types
 - **Show All Rows** toggle for the summary table
 - **Interactive toolbar**: Zoom, pan, reset view, save as image
 
 **Color coding:**
-- **Green bars = Savings** (below average)
-- **Red bars = Paid more** (above average)
+- **Green bars/slices = Savings** (below average)
+- **Red bars/slices = Paid more** (above average)
 
 ### Section 6: Benchmark Comparison
 
 Compare prices between two time periods:
-- Set a "Baseline" period (your reference)
+- Set a "Baseline" period (your reference benchmark)
 - Set a "Comparison" period (what you're comparing)
 - **Filter by category** to compare specific product types
 - See price changes for each product
 - Calculate total gain or loss
+- **Histogram and Pie chart** showing deviation from baseline prices
 - **Show All Rows** toggle to see all data in scrollable tables
 
 **Gain/Loss explained:**
 - If you paid $50 in baseline but $45 in comparison, that's a GAIN (you saved $5 per unit)
 - **Positive Gain/Loss = Savings** (green)
 - **Negative Gain/Loss = Loss** (red)
+
+**Deviation Charts in Section 6:**
+- Shows how comparison period purchases deviate from baseline benchmark prices
+- Same visual style as Section 5 (histogram + pie chart)
+- Displays period info: date ranges, PO counts, quantities for both baseline and comparison
 
 ---
 
@@ -217,7 +225,8 @@ Throughout the tool:
 The tool uses these Python packages:
 - pandas (data analysis)
 - matplotlib (charts)
-- plotly (interactive charts)
+- ipympl (interactive chart toolbar - zoom, pan, save)
+- numpy (numerical calculations)
 - ipywidgets (buttons and date pickers)
 - jupyter (the notebook environment)
 - nbformat (notebook utilities)

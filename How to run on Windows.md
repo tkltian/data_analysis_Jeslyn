@@ -104,48 +104,213 @@ Now you'll run all the code to activate the analysis tools.
 
 ---
 
-## Step 5: Use the Analysis Tools
+## Step 5: Understanding the Notebook Interface
 
-Once all cells have run successfully, scroll down through the notebook to find the interactive analysis sections:
+Before using the tools, let's understand what you're looking at:
+
+### What is a Jupyter Notebook?
+
+A Jupyter notebook is like a document that contains both text explanations AND working code. Think of it as a smart document where you can click buttons and see results.
+
+### The Notebook Layout
+
+When the notebook opens, you'll see it divided into **cells** (rectangular boxes):
+
+1. **Text cells** (gray/white background) - These contain explanations and instructions. Just read them!
+
+2. **Code cells** (with `[ ]:` or `[1]:` on the left) - These contain the actual program code. You don't need to understand the code - just run it!
+
+3. **Output cells** - These appear below code cells and show results, charts, buttons, and tables.
+
+### How to Scroll Through the Notebook
+
+- Use your **mouse scroll wheel** to move up and down
+- Or use the **scrollbar** on the right side of the page
+- The notebook is organized into numbered sections (Section 2, 3, 4, 5, 6)
+- **Section 1** is the setup code at the top - you don't need to interact with it
+
+### What the Numbers Mean
+
+- `[ ]:` = This cell hasn't run yet
+- `[*]:` = This cell is currently running (wait for it!)
+- `[1]:`, `[2]:`, etc. = This cell has finished running (the number shows the order)
+
+---
+
+## Step 6: Use the Analysis Tools
+
+Once all cells have run successfully (you see numbers like [1], [2], [3] instead of [*]), scroll down through the notebook to find the interactive analysis sections.
+
+**How to Use Interactive Elements:**
+
+| Element | What It Looks Like | How to Use It |
+|---------|-------------------|---------------|
+| **Date Picker** | A box with a date | Click on it → A calendar pops up → Click a date |
+| **Dropdown** | A box with an arrow ▼ | Click on it → A list appears → Click your choice |
+| **Multi-Select List** | A tall box with many items | Click an item to select it. Hold **Ctrl** and click to select multiple items. Click again to deselect. |
+| **Checkbox** | A small square ☐ | Click to check ☑ or uncheck ☐ |
+| **Button** | A colored rectangle with text | Click it to perform the action |
+| **Slider** | A bar with a draggable circle | Click and drag the circle left or right |
+
+---
 
 ### Section 2: Monthly Price Trend Chart
-- You'll see a chart showing price trends over time
-- Use the **toolbar below the chart** to zoom, pan, reset view, or save as image
-- Filter by category using the dropdowns
-- Select/deselect products to compare
+
+**Where to find it:** Scroll down until you see "Section 2: Monthly Price Trend Visualization"
+
+**What it does:** Shows a line chart of how prices changed over time for each product.
+
+**How to use it:**
+
+1. **Filter by category** (optional):
+   - Find the dropdown boxes labeled "Category:", "Line:", "Type:", "Class:", "Construction:"
+   - Click any dropdown and select a value to filter products
+   - Or leave them as "All" to see everything
+
+2. **Select products to display:**
+   - Find the tall list box showing product names
+   - Products are pre-selected (highlighted in blue)
+   - To **remove** a product: Hold **Ctrl** and click on it
+   - To **add** a product back: Hold **Ctrl** and click on it
+   - Use **"Select All"** or **"Clear All"** buttons for quick selection
+
+3. **View the chart:**
+   - The chart updates automatically when you change selections
+   - **Legend is below the chart** - shows which color = which product
+
+4. **Use the chart toolbar** (below the chart):
+   - 🏠 **Home** - Reset to original view
+   - ◀ ▶ **Arrows** - Go back/forward in view history
+   - ✛ **Pan** - Click and drag to move around the chart
+   - 🔍 **Zoom** - Draw a rectangle to zoom into that area
+   - 💾 **Save** - Save chart as an image file
+
+5. **View data tables:**
+   - Scroll down below the chart to see data tables
+   - Check **"Show All Rows (scrollable)"** to see all data
+   - Click **"Export to CSV"** to download for Excel
+
+---
 
 ### Section 3: Weighted Average Calculator
-- Find the date picker boxes - click on them to select dates
-- Select products from the dropdown list (hold Ctrl to select multiple)
-- Click the **"Calculate Weighted Average"** button
-- Results will appear below, including:
-  - Summary table with weighted averages
-  - Monthly price trend table
-  - Monthly quantity table
-- Click **"Export to CSV"** buttons to download tables
+
+**Where to find it:** Scroll down until you see "Section 3: Weighted Average Calculator"
+
+**What it does:** Calculates the true average price you paid for products in a date range.
+
+**How to use it:**
+
+1. **Filter by category** (optional):
+   - Use the category dropdowns to narrow down products
+
+2. **Select products:**
+   - In the product list, select which products to analyze
+   - Default is "All Products" - leave this selected to analyze everything
+
+3. **Select date range:**
+   - Click the **Start Date** box → select a date from the calendar
+   - Click the **End Date** box → select a date from the calendar
+
+4. **Display options:**
+   - Check **"Show All Rows (scrollable)"** if you want to see all rows in tables
+
+5. **Calculate:**
+   - Click the **"Calculate Weighted Average"** button
+   - Results appear below!
+
+6. **View results:**
+   - **Summary table** - Shows weighted average, quantity, and value per product
+   - **Monthly Price Pivot** - Shows prices by month (like Excel pivot table)
+   - **Monthly Quantity Pivot** - Shows quantities by month
+   - Click any **"Export to CSV"** button to download that table
+
+---
 
 ### Section 4: Deviation Analysis
-- Select your date range and products
-- Click **"Analyze Deviations"** button
-- See how each purchase compares to the average
-- Use the threshold slider to filter by deviation amount
-- Export any table to CSV
+
+**Where to find it:** Scroll down until you see "Section 4: Deviation Analysis"
+
+**What it does:** Shows how each purchase compares to the average price.
+
+**How to use it:**
+
+1. **Set up filters and date range** (same as Section 3)
+
+2. **Click "Analyze Deviations"** button
+
+3. **View deviation tables:**
+   - **Monthly Deviation (Dollars)** - How much above/below average each month
+   - **Monthly Deviation (Percent)** - Same as above, but in percentages
+   - **Individual PO Deviations** - Every single purchase order's deviation
+
+4. **Filter by threshold:**
+   - Use the slider to show only large deviations
+   - Example: Set to "$2" to see only items that are $2+ above or below average
+
+5. **Understand the colors:**
+   - **GREEN** = Below average (you paid LESS - savings!)
+   - **RED** = Above average (you paid MORE)
+
+---
 
 ### Section 5: Deviation Banding Charts
-- Select your date range
-- Click **"Analyze Bands"** button
-- View histogram and pie chart showing distribution
-- Use the **toolbar below each chart** to zoom, pan, reset view, or save as image
-- Green = Below average (you saved money!)
-- Red = Above average (you paid more)
+
+**Where to find it:** Scroll down until you see "Section 5: Deviation Banding"
+
+**What it does:** Groups purchases into price bands and shows visual charts.
+
+**How to use it:**
+
+1. **Set up filters and date range**
+
+2. **Click "Generate Banding Charts"** button
+
+3. **View the histogram:**
+   - Shows how much quantity you bought at each price level
+   - X-axis: Deviation bands (e.g., "$0-1 below", "$1-2 above")
+   - Y-axis: Total quantity purchased
+   - **GREEN bars** = Below average (savings)
+   - **RED bars** = Above average (paid more)
+
+4. **View the pie chart:**
+   - Shows percentage distribution
+   - **Legend below the chart** explains each color
+   - Percentages shown inside large slices
+
+5. **Use chart toolbar** to zoom, pan, or save images
+
+---
 
 ### Section 6: Benchmark Comparison
-- Select a "Baseline" date range (your reference period)
-- Select a "Comparison" date range (period to compare)
-- Click **"Compare"** button
-- See product-by-product price changes and gain/loss
-- Green = Savings (paid less than baseline)
-- Red = Loss (paid more than baseline)
+
+**Where to find it:** Scroll down until you see "Section 6: Benchmark Comparison"
+
+**What it does:** Compares prices between two time periods to calculate savings or losses.
+
+**How to use it:**
+
+1. **Set up category filters** (optional)
+
+2. **Select BASELINE date range:**
+   - This is your reference period (what you're comparing against)
+   - Example: Last year's prices
+
+3. **Select COMPARISON date range:**
+   - This is the period you want to analyze
+   - Example: This year's prices
+
+4. **Click "Compare Ranges"** button
+
+5. **View results:**
+   - **Baseline Prices** - Average price per product in baseline period
+   - **Comparison Table** - Side-by-side comparison with gain/loss
+   - **Histogram & Pie Chart** - Visual distribution of deviations from baseline
+   - **Monthly Breakdown** - Month-by-month comparison
+
+6. **Understand Gain/Loss:**
+   - **GREEN (Positive)** = You SAVED money (paid less than baseline)
+   - **RED (Negative)** = You LOST money (paid more than baseline)
+   - Example: Baseline $50, Comparison $45 → Gain of $5 per unit (GREEN)
 
 ---
 
@@ -437,7 +602,19 @@ Your CSV file must have these columns with these **exact** names (including spac
 
 **Note:** The `Purchase Price` column has spaces before and after the name. This is intentional and must match exactly.
 
-## Optional Columns
+## Optional Columns (for Category Filtering)
+
+These columns enable the category filter dropdowns. If you don't have them, the filters will be empty but the tool will still work:
+
+| Column Name | What It's For |
+|-------------|---------------|
+| `Material Category Description` | Filter by product category |
+| `Material Line Description` | Filter by product line |
+| `Material Product Type Description` | Filter by product type |
+| `Material Class Description` | Filter by product class |
+| `Construction Type Description` | Filter by construction type |
+
+## Other Optional Columns
 
 These columns are helpful but not required:
 

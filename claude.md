@@ -138,19 +138,19 @@ Weighted Average = SUM(Purchase Price * Ordered Qty) / SUM(Ordered Qty)
 
 **Goal**: Categorize items into deviation bands for visual analysis.
 
-**Band Categories** (configurable):
-- $5+ below average
-- $4 to $5 below
-- $3 to $4 below
-- $2 to $3 below
-- $1 to $2 below
-- $0 to $1 below
-- $0 to $1 above
-- $1 to $2 above
-- $2 to $3 above
-- $3 to $4 above
-- $4 to $5 above
-- $5+ above average
+**Band Categories** (using short labels for readability):
+- $5+ below
+- $4-5 below
+- $3-4 below
+- $2-3 below
+- $1-2 below
+- $0-1 below
+- $0-1 above
+- $1-2 above
+- $2-3 above
+- $3-4 above
+- $4-5 above
+- $5+ above
 
 **Color Coding**:
 - **GREEN** = Below average (savings - you paid less!)
@@ -158,7 +158,7 @@ Weighted Average = SUM(Purchase Price * Ordered Qty) / SUM(Ordered Qty)
 
 **Visualizations**:
 1. **Histogram**: Total quantity in each band (not count of items)
-2. **Pie Chart**: Distribution of quantity across bands
+2. **Pie Chart**: Distribution of quantity across bands (legend below to avoid label overlap)
 3. **Filter capability**: Show items that are e.g., "$1+ above average" or "0.5%+ below average"
 
 ---
@@ -195,6 +195,11 @@ Gain/Loss = (Baseline Price - Comparison Price) × Comparison Qty
    - Gain/Loss vs baseline for each month
 
 3. **Total Gain/Loss Summary**
+
+4. **Deviation Banding Charts** (same style as Section 5):
+   - Histogram showing quantity distribution by deviation from baseline
+   - Pie chart with legend below
+   - Period info displayed: date ranges, PO counts, quantities for both baseline and comparison
 
 ---
 
@@ -305,10 +310,13 @@ All sections with tables (2, 3, 4, 5, 6) include a "Show All Rows (scrollable)" 
 
 #### 10. Charting with matplotlib (Interactive)
 All charts use matplotlib with interactive toolbar (`%matplotlib widget` / `ipympl`):
-- Section 2: Line chart for monthly price trends
+- Section 2: Line chart for monthly price trends (legend below chart)
 - Section 5: Bar chart (histogram) and pie chart for deviation banding
+- Section 6: Bar chart and pie chart for deviation from baseline
 - **Interactive toolbar buttons**: Pan, Zoom, Reset view, Save image
+- **Pie chart design**: Uses legend below chart to avoid label overlap; black text for percentages inside slices for better contrast
 - Benefits: No rendering issues, zoom/pan capabilities, easy image export
+- Fallback: If ipympl not installed, charts render in inline mode without toolbar
 
 ---
 
