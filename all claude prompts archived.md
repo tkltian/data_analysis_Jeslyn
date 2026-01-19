@@ -232,27 +232,37 @@ Let's do another improvement: right now, the file name is hard coded: Important:
 ## Summary of Changes Made
 
 ### Features Implemented
-1. **Section 2**: Line chart with matplotlib, category filters + product filter
-2. **Section 5**: Color swap (green=below avg/savings, red=above avg/paid more), matplotlib bar chart and pie chart
-3. **Section 6**: Fixed Gain/Loss calculation sign convention, per-product comparison, color coding
-4. **All Sections**: Standardized to 2 decimal places
-5. **All Tables**: Added CSV export buttons
-6. **Sections 2, 3, 4, 5, 6**: Added category-based filtering (5 dropdowns)
-7. **Section 4**: Added green/red color coding for deviations
-8. **Sections 3, 4, 5, 6**: Added "Show All Rows (scrollable)" toggle
-9. **All Charts**: Replaced Plotly with matplotlib for reliable rendering
-10. **All Charts**: Added interactive toolbar (zoom, pan, reset, save) via ipympl
+1. **Section 2**: Line chart with matplotlib, category filters + product filter, legend below chart
+2. **Section 2**: Added Show All Rows toggle to data tables
+3. **Section 5**: Color swap (green=below avg/savings, red=above avg/paid more), matplotlib bar chart and pie chart
+4. **Section 5**: Pie chart uses legend below to avoid label overlap, black text for percentages
+5. **Section 5**: Shorter band labels ($0-1 instead of $0 to $1)
+6. **Section 6**: Fixed Gain/Loss calculation sign convention, per-product comparison, color coding
+7. **Section 6**: Added histogram and pie chart showing deviation from baseline
+8. **All Sections**: Standardized to 2 decimal places
+9. **All Tables**: Added CSV export buttons
+10. **Sections 2, 3, 4, 5, 6**: Added category-based filtering (5 dropdowns)
+11. **Section 4**: Added green/red color coding for deviations
+12. **All Sections with Tables**: Added "Show All Rows (scrollable)" toggle
+13. **All Charts**: Replaced Plotly with matplotlib for reliable rendering
+14. **All Charts**: Added interactive toolbar (zoom, pan, reset, save) via ipympl
+15. **Data Loading**: Interactive file selector - users can specify custom CSV filename
+16. **Notebook UX**: Code cells collapse by default for cleaner interface
 
 ### Bug Fixes
 1. Gain/Loss formula: Changed from `(Comp - Base) × Qty` to `(Base - Comp) × Qty`
 2. Removed misleading "Overall Change" comparison in Section 6
 3. Fixed Section 5 histogram chart rendering issues by switching to matplotlib
+4. Fixed pie chart label overlap by using legend below instead of annotations
 
 ### Documentation
 1. Renamed "How to run python code on Windows.md" to "How to run on Windows.md"
 2. Complete rewrite of setup guide with detailed Google Colab and Windows instructions
-3. Updated README.md with user-friendly explanations
-4. Updated CLAUDE.md with technical details and design decisions
+3. Added "Understanding the Notebook Interface" section explaining Jupyter concepts
+4. Added detailed step-by-step instructions for each analysis section
+5. Added table explaining interactive elements (date pickers, dropdowns, etc.)
+6. Updated README.md with user-friendly explanations
+7. Updated CLAUDE.md with technical details and design decisions
 
 ### Other
 1. Added `*.csv` and `exports/` to `.gitignore`
