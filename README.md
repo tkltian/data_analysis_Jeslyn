@@ -2,9 +2,15 @@
 
 Interactive Jupyter notebook for analyzing Purchase Order pricing data, including weighted average calculations, deviation analysis, and benchmark comparisons.
 
-See [How to run python code on Windows.md](How%20to%20run%20python%20code%20on%20Windows.md) for general Python setup instructions.
+## Getting Started
 
-## Quick Start
+**New to Python?** See the detailed setup guide: **[How to run on Windows.md](How%20to%20run%20on%20Windows.md)**
+
+Two options:
+1. **Google Colab** (recommended) - No installation, runs in your browser
+2. **Local Installation** - Install Python on your Windows computer
+
+## Quick Start (for experienced users)
 
 ```bash
 # Install dependencies
@@ -20,86 +26,86 @@ jupyter notebook po_analysis.ipynb
 |------|-------------|
 | `po_analysis.ipynb` | Main analysis notebook with interactive widgets |
 | `requirements.txt` | Python dependencies |
-| `PO Data.csv` | Source Purchase Order data |
+| `PO Data.csv` | Source Purchase Order data (replace with your own) |
+| `How to run on Windows.md` | **Step-by-step setup guide** for beginners |
 | `CLAUDE.md` | Detailed project documentation and data dictionary |
+
+## Using Your Own Data
+
+Your CSV file must:
+1. Be named exactly `PO Data.csv`
+2. Be placed in the same folder as the notebook (or uploaded to Colab)
+3. Have these required columns:
+
+| Column | Description |
+|--------|-------------|
+| `PO#` | Purchase Order number |
+| `Material` | Product ID number |
+| `Short Name` | Product name |
+| `PO Date` | Date (M/DD/YY format) |
+| `Ordered Q'ty` | Quantity ordered |
+| ` Purchase Price ` | Unit price ($ signs OK) |
+
+See [How to run on Windows.md](How%20to%20run%20on%20Windows.md) for detailed instructions.
 
 ## Features
 
-### 1. Monthly Price Trend Visualization
+### Section 1: Data Loading
+- Loads and cleans CSV data
+- Parses dollar amounts and dates
+- Aggregates sizes within same PO
+
+### Section 2: Monthly Price Trend Visualization
 - Interactive line chart showing weighted average price over time
 - Multi-product selector to compare trends
-- Groups by `Material` ID (aggregates all sizes/colors)
+- Tall chart (900px) with legend below for readability
+- Click legend items to show/hide products
 
-### 2. Weighted Average Calculator
+### Section 3: Weighted Average Calculator
 - Select date range using date pickers
 - Filter by specific products or view all
 - Displays: weighted avg price, total quantity, total FOB value
-- **Excel-format monthly price trend table**: pivot table showing weighted avg price per product per month
-- **Excel-format monthly quantity table**: pivot table showing quantity ordered per product per month
-- All tables constrained to the user-selected date range
+- **Excel-format monthly price trend table**: pivot showing weighted avg price per product per month
+- **Excel-format monthly quantity table**: pivot showing quantity ordered per product per month
 
-### 3. Deviation Analysis
+### Section 4: Deviation Analysis
 - Shows how each PO deviates from the weighted average
 - Dollar deviation: `Item Price - Weighted Average`
 - Percentage deviation: `(Deviation / Average) * 100%`
 - Threshold filters: show items above/below a dollar amount
-- **Monthly deviation table (dollars)**: Excel-format pivot showing each month's price deviation from overall weighted avg
-- **Monthly deviation table (percentage)**: same as above but in percentage format
-- **Monthly price reference table**: shows actual monthly weighted avg prices for context
-- All analysis constrained to user-selected date range
+- **Monthly deviation tables**: Excel-format pivots showing each month's deviation from overall weighted avg (in dollars and percentages)
 
-### 4. Deviation Banding
+### Section 5: Deviation Banding
 - Categorizes purchases into $1 bands (e.g., "$1 to $2 above average")
 - **Uses Total Quantity** (not count) - shows how much you bought at each deviation level
-- Histogram visualization with color coding (red=below, green=above)
-- Pie chart showing quantity distribution
+- Color coding: **Green = Below average (savings)**, **Red = Above average (paid more)**
+- Histogram and pie chart visualizations
 
-### 5. Benchmark Comparison
-- Compare pricing between two date ranges
-- **Clear period summaries**: PO count, total quantity, total FOB value, overall weighted avg
-- **Overall change**: quantity change and price change with percentages
-- **Product-by-product table**: Base POs, Base Price, Base Qty, Comp POs, Comp Price, Comp Qty, Price Δ, Qty Δ
-- Summary statistics for price increases/decreases
+### Section 6: Benchmark Comparison
+- Compare pricing between two date ranges (baseline vs comparison)
+- **Gain/Loss calculation**: `(Baseline Price - Comparison Price) × Comparison Qty`
+  - **Positive = GAIN** (you paid less, saved money!)
+  - **Negative = LOSS** (you paid more)
+- Product-by-product comparison table
+- Monthly breakdown vs baseline benchmark
+- Total gain/loss summary
 
 ## Data Processing Notes
 
 ### Primary Date Field
-**Always use `PO Date`** for time-based analysis. The data contains many other date fields (XFD, ETA, Delivery dates) but these should NOT be used for trend analysis.
+**Always use `PO Date`** for time-based analysis. Other date fields (XFD, ETA, etc.) are NOT used.
 
-### Dollar Sign Parsing Issue
-
-The `Purchase Price` column contains values like ` $41.70 ` (with spaces and `$`).
-
-**Problem**: Simple string replacement doesn't work reliably:
+### Dollar Sign Parsing
+The `Purchase Price` column has `$` signs. The notebook handles this automatically using:
 ```python
-# THIS DOESN'T WORK
-df['Price'] = df[' Purchase Price '].str.replace('$', '', regex=False).astype(float)
-```
-
-**Solution**: Use regex with escaped dollar sign:
-```python
-# THIS WORKS
 df['Purchase_Price'] = pd.to_numeric(
     df[' Purchase Price '].astype(str).str.replace('\\$', '', regex=True).str.strip(),
     errors='coerce'
 )
 ```
 
-**Why?** The `$` character has special meaning in regex (end of string). When using `regex=False`, pandas string methods don't handle `$` consistently. Using `regex=True` with `\\$` explicitly matches the literal dollar sign.
-
 ### PO-Level Aggregation
-Multiple rows with the same `PO#` + `Material` represent different **sizes** of the same order. Since all sizes have the same unit price, we aggregate by summing quantities. This reduces ~3,000 raw rows to ~300 PO line items.
-
-### Product Grouping
-- Products grouped by `Material` ID (numeric)
-- All sizes (SML, MED, LG, XL, etc.) aggregated together
-- All colors aggregated together
-
-### Data Summary
-- Raw rows: 3,230 → Cleaned: 3,098 → After PO aggregation: 303
-- Date range: 2025-01-29 to 2026-01-09
-- Unique POs: 278
-- Unique products: 74
+Multiple rows with same `PO#` + `Material` (different sizes) are aggregated by summing quantities.
 
 ## Dependencies
 
@@ -108,3 +114,4 @@ Multiple rows with the same `PO#` + `Material` represent different **sizes** of 
 - plotly
 - ipywidgets
 - jupyter
+- nbformat

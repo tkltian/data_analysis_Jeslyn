@@ -4,6 +4,12 @@
 - **File**: `PO Data.csv`
 - **Purpose**: Purchase Order data analysis for product pricing trends
 
+## Getting Started
+
+See **[How to run on Windows.md](How%20to%20run%20on%20Windows.md)** for detailed setup instructions:
+- **Option 1**: Google Colab (no installation required)
+- **Option 2**: Local Python installation on Windows
+
 ## Data Structure Overview
 
 ### Key Columns
@@ -129,9 +135,13 @@ Weighted Average = SUM(Purchase Price * Ordered Qty) / SUM(Ordered Qty)
 - $4 to $5 above
 - $5+ above average
 
+**Color Coding**:
+- **GREEN** = Below average (savings - you paid less!)
+- **RED** = Above average (paid more than average)
+
 **Visualizations**:
-1. **Histogram**: Count of items in each band
-2. **Pie Chart**: Distribution of items across bands
+1. **Histogram**: Total quantity in each band (not count of items)
+2. **Pie Chart**: Distribution of quantity across bands
 3. **Filter capability**: Show items that are e.g., "$1+ above average" or "0.5%+ below average"
 
 ---
@@ -141,19 +151,33 @@ Weighted Average = SUM(Purchase Price * Ordered Qty) / SUM(Ordered Qty)
 **Goal**: Compare a new date range against a baseline date range.
 
 **Process**:
-1. **Select Baseline Range**: Choose PO Date range for baseline analysis
-2. **Calculate Baseline Metrics**: Weighted average, deviation bands, etc.
+1. **Select Baseline Range**: Choose PO Date range for baseline analysis (price benchmark)
+2. **Calculate Baseline Metrics**: Weighted average per product
 3. **Select Comparison Range**: Choose a second PO Date range
 4. **Compare**:
    - Price change (dollar and percentage)
-   - Shift in deviation distribution
-   - Products with significant price changes
+   - Gain/Loss calculation
 
-**Output**:
-| Product | Baseline Avg | Comparison Avg | Change ($) | Change (%) |
-|---------|--------------|----------------|------------|------------|
-| Product A | $54.80 | $56.20 | +$1.40 | +2.55% |
-| Product B | $41.70 | $41.70 | $0.00 | 0.00% |
+**Gain/Loss Calculation**:
+```
+Gain/Loss = (Baseline Price - Comparison Price) × Comparison Qty
+```
+- **POSITIVE = GAIN** (you paid less than baseline, saved money!)
+- **NEGATIVE = LOSS** (you paid more than baseline)
+
+**Output Tables**:
+
+1. **Product-by-Product Comparison**:
+| Product | Base Price | Comp Price | Price Δ | Price Δ% | Comp Qty | Gain/Loss ($) |
+|---------|------------|------------|---------|----------|----------|---------------|
+| Product A | $54.80 | $52.00 | -$2.80 | -5.1% | 1,000 | +$2,800.00 |
+| Product B | $41.70 | $43.50 | +$1.80 | +4.3% | 500 | -$900.00 |
+
+2. **Monthly Comparison vs Baseline Benchmark**:
+   - Price delta vs baseline for each month
+   - Gain/Loss vs baseline for each month
+
+3. **Total Gain/Loss Summary**
 
 ---
 
@@ -183,8 +207,13 @@ Weighted Average = SUM(Purchase Price * Ordered Qty) / SUM(Ordered Qty)
 | `po_analysis.ipynb` | Main Jupyter notebook with interactive analysis |
 | `requirements.txt` | Python dependencies |
 | `PO Data.csv` | Source data file |
+| `How to run on Windows.md` | Setup guide for Windows/Colab |
+| `README.md` | Project overview |
 
 ### How to Run
+See **[How to run on Windows.md](How%20to%20run%20on%20Windows.md)** for detailed instructions.
+
+Quick start:
 ```bash
 pip install -r requirements.txt
 jupyter notebook po_analysis.ipynb
@@ -192,11 +221,11 @@ jupyter notebook po_analysis.ipynb
 
 ### Notebook Sections
 1. **Setup & Data Loading** - Data cleaning, PO-level aggregation
-2. **Monthly Price Trend** - Interactive Plotly line chart with product selector, data tables
+2. **Monthly Price Trend** - Interactive Plotly line chart (900px tall), legend below chart
 3. **Weighted Average Calculator** - Date range + product filter, Excel-format monthly trend tables
 4. **Deviation Analysis** - Monthly deviation tables (dollars & %), individual PO deviations with threshold filtering
-5. **Deviation Banding** - Histogram and pie chart by **Total Quantity** (not count)
-6. **Benchmark Comparison** - Compare two date ranges with full period summaries
+5. **Deviation Banding** - Histogram and pie chart by **Total Quantity** (Green=savings, Red=paid more)
+6. **Benchmark Comparison** - Compare two date ranges with Gain/Loss calculations
 
 ### Key Design Decisions
 
@@ -214,6 +243,10 @@ Section 5 shows **how much you bought** at each price deviation level, not just 
 
 #### 3. Product Grouping
 Products are grouped by `Material` ID only, aggregating all sizes and colors together.
+
+#### 4. Gain/Loss Convention
+- **Positive Gain/Loss = SAVINGS** (you paid less than baseline)
+- **Negative Gain/Loss = LOSS** (you paid more than baseline)
 
 ---
 
