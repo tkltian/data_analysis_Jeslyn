@@ -1,6 +1,6 @@
 pandas
 matplotlib
-plotly
+numpy
 ipywidgets
 jupyter
 nbformat

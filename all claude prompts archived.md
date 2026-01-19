@@ -122,21 +122,52 @@ Also, store another file "all claude prompts archived" to archive all prompts we
 
 ---
 
+### Prompt 17: Add Category Filtering to Section 2
+```
+The 'filter products' feature, also do it for the 'show pricing trends' products picker, in section 2. Basically, anywhere there is a product picker, use it!!!
+```
+
+---
+
+### Prompt 18: Add Show All Rows Toggle
+```
+For tables like this, what's the best way to be able to see all rows? Do I have to export to .csv, and load in another program to see all rows? What's the best way in Jupyter notebook?
+```
+(User chose: "Show All Rows" toggle button with scrollable tables)
+
+---
+
+### Prompt 19: Replace Plotly with Matplotlib
+```
+The histogram chart still doesn't display well, with huge pink region under the chart that is blank; and I still need to click the "AUTOSCALE" button to make the diagram display correctly. This is just plain mindblowing, since it is indeed just a VERY SIMPLE HISTOGRAM!!!!!! Now, let's try something different: ditch plotly. Let's use matplotlib. And just feed the histogram data, to matplotlib as a SIMPLE histogram.... let's see whether this will work well.
+```
+
+---
+
+### Prompt 20: Use Matplotlib Everywhere
+```
+Just use matplotlib everywhere. Remember to update the requirements.txt, and update documentations as needed
+```
+
+---
+
 ## Summary of Changes Made
 
 ### Features Implemented
-1. **Section 2**: Taller chart (900px), legend moved below chart
-2. **Section 5**: Color swap (green=below avg/savings, red=above avg/paid more), auto-scale
+1. **Section 2**: Line chart with matplotlib, category filters + product filter
+2. **Section 5**: Color swap (green=below avg/savings, red=above avg/paid more), matplotlib bar chart and pie chart
 3. **Section 6**: Fixed Gain/Loss calculation sign convention, per-product comparison, color coding
 4. **All Sections**: Standardized to 2 decimal places
 5. **All Tables**: Added CSV export buttons
-6. **Sections 3, 4, 5, 6**: Added category-based filtering (5 dropdowns)
+6. **Sections 2, 3, 4, 5, 6**: Added category-based filtering (5 dropdowns)
 7. **Section 4**: Added green/red color coding for deviations
+8. **Sections 3, 4, 5, 6**: Added "Show All Rows (scrollable)" toggle
+9. **All Charts**: Replaced Plotly with matplotlib for reliable rendering
 
 ### Bug Fixes
 1. Gain/Loss formula: Changed from `(Comp - Base) × Qty` to `(Base - Comp) × Qty`
 2. Removed misleading "Overall Change" comparison in Section 6
-3. Fixed Section 5 histogram chart rendering issues
+3. Fixed Section 5 histogram chart rendering issues by switching to matplotlib
 
 ### Documentation
 1. Renamed "How to run python code on Windows.md" to "How to run on Windows.md"
@@ -146,3 +177,4 @@ Also, store another file "all claude prompts archived" to archive all prompts we
 
 ### Other
 1. Added `*.csv` and `exports/` to `.gitignore`
+2. Updated `requirements.txt` - replaced `plotly` with `numpy`

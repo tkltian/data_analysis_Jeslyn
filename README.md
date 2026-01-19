@@ -54,9 +54,10 @@ jupyter notebook po_analysis.ipynb
 ### Section 2: Monthly Price Trend Chart
 
 See how prices have changed over time:
-- Interactive chart showing all products
-- Click on product names to show/hide them
-- Hover over lines to see exact prices and dates
+- Line chart showing all products
+- **Filter by category** (Material Category, Line, Type, Class, Construction)
+- Select/deselect specific products to compare
+- Legend shows which color belongs to which product
 
 ### Section 3: Weighted Average Calculator
 
@@ -66,6 +67,7 @@ Calculate the true average price you paid:
 - Choose specific products or view all
 - See weighted average price (accounts for quantity bought)
 - View monthly breakdowns in table format
+- **Show All Rows** toggle to see all data in scrollable tables
 - **Export to CSV** for use in Excel
 
 **What is "weighted average"?** If you buy 100 units at $10 and 900 units at $20, your weighted average is $19 (not $15). It accounts for how much you actually purchased at each price.
@@ -77,6 +79,7 @@ See how each purchase compares to the average:
 - **Percentage deviation**: What percentage above/below average?
 - **Filter by category** to focus on specific product types
 - Filter to see only purchases above a certain threshold
+- **Show All Rows** toggle to see all data in scrollable tables
 - **Export to CSV**
 
 **Color coding:**
@@ -86,10 +89,11 @@ See how each purchase compares to the average:
 ### Section 5: Deviation Banding Charts
 
 Visual breakdown of your purchases:
-- Histogram showing how much you bought at each price level
+- Bar chart (histogram) showing how much you bought at each price level
 - Pie chart showing distribution
 - Grouped into $1 bands (e.g., "$1 to $2 below average")
 - **Filter by category** to analyze specific product types
+- **Show All Rows** toggle for the summary table
 
 **Color coding:**
 - **Green bars = Savings** (below average)
@@ -103,6 +107,7 @@ Compare prices between two time periods:
 - **Filter by category** to compare specific product types
 - See price changes for each product
 - Calculate total gain or loss
+- **Show All Rows** toggle to see all data in scrollable tables
 
 **Gain/Loss explained:**
 - If you paid $50 in baseline but $45 in comparison, that's a GAIN (you saved $5 per unit)
