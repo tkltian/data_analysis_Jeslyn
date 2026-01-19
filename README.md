@@ -174,7 +174,7 @@ Your CSV file needs these columns (exact names matter!):
 | `Material Class Description` | Product class |
 | `Construction Type Description` | Construction type |
 
-**Important:** The file must be named exactly `PO Data.csv`
+**Default filename:** `PO Data.csv` (you can change this in the notebook's file selector)
 
 See **[How to run on Windows.md](How%20to%20run%20on%20Windows.md)** for detailed instructions on preparing your data.
 

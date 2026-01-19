@@ -80,9 +80,9 @@ Your CSV file contains all the Purchase Order data that will be analyzed.
    - Don't proceed until the upload is finished
 10. Your file should now appear in the file list on the left
 
-**CRITICAL:** Your CSV file **MUST** be named exactly `PO Data.csv` (with the space between "PO" and "Data"). If your file has a different name:
-- **Option A:** Before uploading, rename your file on your computer to `PO Data.csv`
-- **Option B:** After uploading to Colab, right-click the file in the Files panel, select "Rename", and change it to `PO Data.csv`
+**File naming options:**
+- **Option A (Easiest):** Name your file `PO Data.csv` - this is the default and will work automatically
+- **Option B:** Keep your own filename - after uploading, you can change the filename in the notebook's "Data File" text box before clicking "Load Data"
 
 ---
 
@@ -631,7 +631,7 @@ These columns are helpful but not required:
 3. Click **File** → **Save As**
 4. Choose where to save it
 5. In "Save as type", select **CSV (Comma delimited) (*.csv)**
-6. Name it exactly: `PO Data.csv`
+6. Name it `PO Data.csv` (or any name - you can specify it in the notebook)
 7. Click **Save**
 8. If you see a warning about features not compatible with CSV, click **Yes** to continue
 
@@ -660,11 +660,13 @@ These columns are helpful but not required:
 **Problem:** The notebook can't find your CSV file.
 
 **Solutions:**
-1. Make sure your CSV file is named exactly `PO Data.csv` (with the space)
-2. Check that you uploaded the file (look in the Files panel on the left)
-3. If you uploaded it, the file might have a different name - right-click and rename it
+1. Check that you uploaded the file (look in the Files panel on the left)
+2. Make sure the filename in the "Data File" text box matches your actual file name
+3. If your file has a different name than `PO Data.csv`:
+   - Type your actual filename in the "Data File" text box
+   - Click the "Load Data" button
 4. Try re-uploading the file
-5. After uploading, run all cells again: **Runtime** → **Run all**
+5. After uploading, click "Load Data" again (or run all cells: **Runtime** → **Run all**)
 
 ### Charts or widgets not showing
 

@@ -222,6 +222,13 @@ ALso, for the Jupyter notebook, the code sections are getting pretty lengthy. By
 
 ---
 
+### Prompt 31: Allow Custom Data File Name
+```
+Let's do another improvement: right now, the file name is hard coded: Important: The file must be named exactly PO Data.csv. Let's change that, in the Jupyter notebook, let the user specify the file name. By default, the filename is PO Data.csv, thus the notebook would run just like before. But optionally, the user can put their own custom file name in the file name box to run with different data files.
+```
+
+---
+
 ## Summary of Changes Made
 
 ### Features Implemented
