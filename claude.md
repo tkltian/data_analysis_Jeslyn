@@ -256,11 +256,11 @@ jupyter notebook po_analysis.ipynb
 
 ### Notebook Sections
 1. **Setup & Data Loading** - Data cleaning, PO-level aggregation, category options, scrollable table helper
-2. **Monthly Price Trend** - matplotlib line chart, category filters + product filter
+2. **Monthly Price Trend** - matplotlib line chart, category filters + product filter, data tables with Show All Rows toggle
 3. **Weighted Average Calculator** - Date range + category filters + product filter, Excel-format monthly trend tables, Show All Rows toggle
 4. **Deviation Analysis** - Monthly deviation tables (dollars & %), individual PO deviations with threshold filtering, color coded, Show All Rows toggle
 5. **Deviation Banding** - matplotlib histogram and pie chart by **Total Quantity** (Green=savings, Red=paid more), Show All Rows toggle
-6. **Benchmark Comparison** - Compare two date ranges with Gain/Loss calculations, color coded, Show All Rows toggle
+6. **Benchmark Comparison** - Compare two date ranges with Gain/Loss calculations, color coded, Show All Rows toggle, histogram and pie chart showing deviation from baseline
 
 ### Key Design Decisions
 
@@ -298,7 +298,7 @@ Throughout the notebook:
 All analysis sections support filtering by 5 category dimensions. Filters use AND logic (all selected filters must match). The product selector dynamically updates based on category selections.
 
 #### 9. Show All Rows Toggle
-Sections 3, 4, 5, 6 include a "Show All Rows (scrollable)" checkbox. When enabled:
+All sections with tables (2, 3, 4, 5, 6) include a "Show All Rows (scrollable)" checkbox. When enabled:
 - All rows of each table are displayed (instead of pandas' default truncation)
 - Tables are wrapped in a scrollable container (max-height: 400-500px)
 - Users can scroll through all data without exporting to CSV

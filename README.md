@@ -59,6 +59,9 @@ See how prices have changed over time:
 - Select/deselect specific products to compare
 - Legend shows which color belongs to which product
 - **Interactive toolbar**: Zoom, pan, reset view, save as image
+- **Data tables below the chart** with monthly prices and quantities
+- **Show All Rows** toggle to see all data in scrollable tables
+- **Export to CSV** for use in Excel
 
 ### Section 3: Weighted Average Calculator
 

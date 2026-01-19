@@ -158,6 +158,49 @@ Add plotting tools, such as zoom buttons, to the matplotlib plots
 
 ---
 
+### Prompt 22: Ensure ipympl in Requirements and Guide
+```
+make sure ipympl is in the requirements.txt, and also in the guide
+```
+
+---
+
+### Prompt 23: Add Show All Rows Toggle to ALL Tables
+```
+Oh I see it now. But the request, is to have it for EVERY table; example is the section 2, === Monthly Weighted Average Price by Product ===
+(Rows: 74 products, Columns: 13 months): I need an option to see ALL ROWS for that table too!!! So do an audit, basically make sure for EVERY table, there is a way to see all rows
+```
+
+---
+
+### Prompt 24: Improve Pie Chart Labels and Visuals
+```
+The pie chart, has the labels overlapping with each other; modify it so that with no overlap, and place the labels such that each can have a line linking the label to the pie, if necessary. Also, the pies in the pie chart, should have better boundary; maybe use some more clear boundary with 3D effect or something; do resaerch to see what makes sense
+```
+
+---
+
+### Prompt 25: Use Shorter Band Labels
+```
+Also use "$0-1 above" (instead of "0to1 above" or "$0 to $1 above")
+```
+
+---
+
+### Prompt 26: Move Section 2 Legend Below Chart
+```
+The plot for "Monthly weighted average price trend" in section 2, the legends box is way clipped and difficult to read. Put the legend box under the chart (while keeping the chart the same height as now, so there is plenty of room for displaying hte trend lines)
+```
+
+---
+
+### Prompt 27: Add Histogram/Pie Chart to Section 6
+```
+Section 6: add the same histogram / pie chart, just like section 5, but instead of comparing against the data's own weighted average, it's comparing against the benchmark baseline weighted average; and also put the data range, PO count information of benchmark baseline, and the comparison, along with the charts.
+```
+
+---
+
 ## Summary of Changes Made
 
 ### Features Implemented

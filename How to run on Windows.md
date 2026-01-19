@@ -2,6 +2,12 @@
 
 This guide will help you run the Purchase Order analysis tool. **No programming experience required!**
 
+**Features:**
+- Interactive charts with **zoom, pan, and save** capabilities (toolbar appears below charts)
+- Filter products by category (Category, Line, Type, Class, Construction)
+- Export all tables to CSV for use in Excel
+- Color-coded results (Green = savings, Red = paid more)
+
 **Choose one option:**
 - **Option 1: Google Colab** (Recommended!) - Easiest method, runs in your web browser, nothing to install
 - **Option 2: Local Installation** - Install Python on your Windows computer
@@ -103,9 +109,10 @@ Now you'll run all the code to activate the analysis tools.
 Once all cells have run successfully, scroll down through the notebook to find the interactive analysis sections:
 
 ### Section 2: Monthly Price Trend Chart
-- You'll see a tall chart showing price trends over time
-- Click on product names in the legend (below the chart) to show/hide them
-- Hover over lines to see exact values
+- You'll see a chart showing price trends over time
+- Use the **toolbar below the chart** to zoom, pan, reset view, or save as image
+- Filter by category using the dropdowns
+- Select/deselect products to compare
 
 ### Section 3: Weighted Average Calculator
 - Find the date picker boxes - click on them to select dates
@@ -128,6 +135,7 @@ Once all cells have run successfully, scroll down through the notebook to find t
 - Select your date range
 - Click **"Analyze Bands"** button
 - View histogram and pie chart showing distribution
+- Use the **toolbar below each chart** to zoom, pan, reset view, or save as image
 - Green = Below average (you saved money!)
 - Red = Above average (you paid more)
 
@@ -491,6 +499,15 @@ These columns are helpful but not required:
 3. Try refreshing the page (press F5) and run all cells again
 4. If using an older browser, try Chrome instead
 
+### Interactive toolbar not showing on charts
+
+**Problem:** Charts display but there's no zoom/pan toolbar below them.
+
+**Solution:** This is normal if `ipympl` is not installed. The charts will still work, you just won't have the zoom/pan buttons. To enable the toolbar:
+1. In a code cell, run: `!pip install ipympl`
+2. Restart the runtime: **Runtime** → **Restart runtime**
+3. Run all cells again: **Runtime** → **Run all**
+
 ### Session disconnected
 
 **Problem:** You see "Runtime disconnected" or similar message.
@@ -567,6 +584,17 @@ python -m jupyter notebook
 2. Check that your CSV file has all the required columns (see "Using Your Own Data Files" section)
 3. Try running cells one at a time by clicking the play button ▶️ on each cell to find which one has the error
 4. Look at the error message - it often tells you what's wrong
+
+### Interactive toolbar not showing on charts (Windows)
+
+**Problem:** Charts display but there's no zoom/pan toolbar below them.
+
+**Solution:** This happens if `ipympl` is not properly installed. The charts will still work without the toolbar. To enable it:
+1. Open Command Prompt
+2. Navigate to your project folder
+3. Run: `pip install ipympl`
+4. Restart Jupyter: close the browser tab, press Ctrl+C in Command Prompt, then start Jupyter again with `jupyter notebook`
+5. Run all cells again
 
 ---
 
